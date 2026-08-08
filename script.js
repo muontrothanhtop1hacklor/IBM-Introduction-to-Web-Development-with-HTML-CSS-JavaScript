@@ -1,28 +1,124 @@
-function addRecommendation() {
-    // Get the message of the new recommendation
-    let recommendation = document.getElementById("new_recommendation");
-    // If the user has left a recommendation, display a pop-up
-    if (recommendation.value != null && recommendation.value.trim() != "") {
-      console.log("New recommendation added");
-      //Call showPopup here
-      
-      // Create a new 'recommendation' element and set it's value to the user's message
-      var element = document.createElement("div");
-      element.setAttribute("class","recommendation");
-      element.innerHTML = "\<span\>&#8220;\</span\>" + recommendation.value + "\<span\>&#8221;\</span\>";
-      // Add this element to the end of the list of recommendations
-      document.getElementById("all_recommendations").appendChild(element); 
-      
-      // Reset the value of the textarea
-      recommendation.value = "";
-    }
-  }
-  
-  function showPopup(bool) {
-    if (bool) {
-      document.getElementById('popup').style.visibility = 'visible'
-    } else {
-      document.getElementById('popup').style.visibility = 'hidden'
-    }
-  }
-  
+/* --- Styling for Name & Navbar --- */
+#navbar {
+    background-color: #333;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+}
+
+/* Styling for Name */
+.logo h2 {
+    color: #fff;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    transition: all 0.3s ease; /* Smooth transition for hover */
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+/* Hover effects for About, Project Details, Skills, and Recommendations */
+.nav-links a:hover {
+    color: #1abc9c;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
+/* --- General Layout Styling --- */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.section { padding: 60px 20px; }
+.container { max-width: 1000px; margin: 0 auto; }
+h1, h2, h3 { color: #2c3e50; }
+.subtitle { color: #7f8c8d; font-size: 1.2rem; margin-bottom: 20px; }
+
+/* Grid Layouts */
+.projects-grid, .skills-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.project-card, .skill-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    flex: 1 1 250px;
+}
+.skill-icon { font-size: 3rem; color: #1abc9c; margin-bottom: 10px; }
+
+/* Recommendations */
+.recommendation {
+    background: #ecf0f1;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid #1abc9c;
+    border-radius: 4px;
+    font-style: italic;
+}
+.add-recommendation fieldset { border: none; padding: 0; display: flex; flex-direction: column; gap: 10px;}
+.add-recommendation input, .add-recommendation textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+.add-recommendation button { background: #333; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 4px;}
+.add-recommendation button:hover { background: #1abc9c; }
+
+/* Home Icon */
+.home-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #333;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+.home-icon:hover { background: #1abc9c; }
+
+/* Popup Styling */
+#popup {
+    visibility: hidden; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    text-align: center;
+    z-index: 2000;
+}
+.flex-center { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+#popup button { margin-top: 15px; padding: 8px 20px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer;}
+#popup button:hover { background: #1abc9c; }
